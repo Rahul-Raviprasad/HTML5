@@ -114,6 +114,86 @@ https://stackoverflow.com/questions/76651/dirty-rectangles
 
 ## Texture Atlasing vs Spriting
 they are used interchangebly, although sprites are far more common. But if we want to be very specific then sprites are only a group of frames for an animation, but atlas is a generic term for grouping or packaging many items together.
+you can use tools like texture packer
+https://www.codeandweb.com/texturepacker
 
+
+#### Parseing the JSON Data from atlasing tools
+
+```js
+function parseAtlas(atlasJSON) {
+  var parsed = JSON.parse(atlasJSON);
+
+  for(key in parsed.frames) {
+      var sprite = parsed.frames[key];
+      //define the center of the sprite as an offset and hence the negative value.
+      var cx = -sprite.frame.w * 0.5;
+      var cy = -sprite.frame.h * 0.5;
+
+      // define the sprite for the sheet
+      defSprite(key, sprite.frame.x, sprite.frame.y, sprite.frame.w, sprite.frame.h)
+  }
+
+}
+
+function defSprite() {
+
+}
+```
+
+## Drawing sprites
+
+```js
+// we keep a global dictionary of loaded sprite sheets
+var gSpriteSheets = {};
+
+spriteSheetClass = Class.extend({
+  img: null,
+  url: "",
+  sprites = new Array(),
+  //--
+  init: function() {
+
+  },
+  //---
+  load: function(imgName) {
+    var img = new Image();
+    img.src = imgName;
+    this.img = img;
+    this.url = imgName;
+    gSpriteSheets[imgName] = this;
+
+  }
+});
+
+
+function drawSprite(spriteName, posX, posY) {
+  // walk through all the sprite sheets and find what spritesheets we are looking for.
+  for(var sheetName in gSpriteSheets) {
+    var sheet = gSpriteSheets[sheetName];
+    var sprite = sheet.getStats(spriteName);
+    if(sprite == null) continue;
+
+    __drawSpriteInternal(sprite, sheet, posX, posY);
+
+    return;
+  }
+}
+
+function __drawSpriteInternal(spt, sheet, posX, posY) {
+  if(spt == null || sheet == null) return;
+
+  var hlf = {
+    x: spt.cx,
+    y: spt.cy
+  };
+
+  // this is the canvas context object method. and we are calling its drawImage method
+  ctx.drawImage(sheet.img, spt.x, spt.y, spt.w, spt.h, posX + hlf.x, posY + hlf.y  spt.w, spt.h);
+}
+```
 ## Some points
 * in modern there are only as many as 6 server calls that possibly take place, which means if say you have a 1000 calls then the other will keep waiting unless some of the calls gets resolved.
+* Use tools like tile editors to get the data for your background
+https://www.mapeditor.org/
+* have a world view and and a viewRect, when you want to update the canvas don't update the entire world, but only the visible part of the canvas. i.e viewRect. And re-center the area showing inside the canvas, this way you save on performance as we are not re rendering the entire complecated world of maps.
