@@ -192,8 +192,14 @@ function __drawSpriteInternal(spt, sheet, posX, posY) {
   ctx.drawImage(sheet.img, spt.x, spt.y, spt.w, spt.h, posX + hlf.x, posY + hlf.y  spt.w, spt.h);
 }
 ```
+
+## Off screen canvas
+
+
 ## Some points
 * in modern there are only as many as 6 server calls that possibly take place, which means if say you have a 1000 calls then the other will keep waiting unless some of the calls gets resolved.
 * Use tools like tile editors to get the data for your background
 https://www.mapeditor.org/
 * have a world view and and a viewRect, when you want to update the canvas don't update the entire world, but only the visible part of the canvas. i.e viewRect. And re-center the area showing inside the canvas, this way you save on performance as we are not re rendering the entire complecated world of maps.
+* use addEventListener to listen to event on the elements.
+* allow keymapping for user to change the OPTIONS
