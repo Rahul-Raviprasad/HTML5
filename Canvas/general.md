@@ -81,3 +81,95 @@ render them out en bloque through innerHTML
 
 ## Action surfaces
 Paul Bakaus
+
+## Basic Entity class
+```js
+
+EntityClass = Class.extend({
+  //can be referenced by child classes
+  pos: {x:0,y:0},
+  size: {x:0,y:0},
+  // can be overloaded by child classes
+  update: function() {}
+
+});
+
+GameEngineClass = Class.extend({
+  spawnEntity: function (typeName){
+    if(typeName == "Player") {
+      return new PlayerClass();
+    } else if(typeName == "Monster") {
+      return new MonsterClass();
+    } else if(typeName == "Tank") {
+      return new TankClass();
+    }
+  }
+});
+
+var gGameEngine = new GameEngineClass();
+```
+Note: using a else if or switch case for small number entities is ok. But in general we will need a factory to reference as below
+```js
+
+EntityClass = Class.extend({
+  //can be referenced by child classes
+  pos: {x:0,y:0},
+  size: {x:0,y:0},
+  _killed: false,
+  currSpriteName: null,
+  zindex: 0,
+  // can be overloaded by child classes
+  update: function() {},
+  draw: function() {
+    if(this.currSpriteName) {
+      //drawSprite
+    }
+  }
+
+});
+
+
+
+
+GameEngineClass = Class.extend({
+  // To keep track of entities we have spawn.
+  entities: [],
+  // Factory object, containing all the types like Player, hammer, tank, monster, mine etc
+  factory: {},
+  spawnEntity: function (typeName) {
+    var ent =  new (factory[typeName])();
+    this.entities.push(ent);
+    return ent;
+  },
+  update: function() {
+    // Run through the entities list and call each entity's update method
+    for (var i = 0; i < this.entities.length; i++) {
+      var ent = this.entities[i];
+      if(!ent._killed) {
+        ent.update();
+      }
+    }
+  }
+});
+
+var gGameEngine = new GameEngineClass();
+```
+
+### Collision detection
+```js
+intersectRect = function(r1, r2) {
+  return !(r2.left > r1.right ||
+           r2.right < r1.left ||
+           r2.top > r1.bottom ||
+           r2.bottom < r1.top);
+}
+```
+
+collision location.
+
+once you you collision detection you also need to handle the collision.
+Collision handling can also be done in many ways.
+the physics engines like box2d also allows you to pass a callback function for handling the collision between bodies.
+
+## Physics engine
+check out Box2D
