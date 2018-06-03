@@ -28,3 +28,44 @@ function loadAssets(assetName, callbackFcn) {
 
 }
 ```
+Batch loading
+
+```js
+
+function loadAssets(assetList, callbackFn) {
+  var loadBatch = {
+    count: 0,
+    total: assetList.count,
+    cb: callbackFn
+  };
+
+  for(var i = 0; i < assetList.length; i++ ) {
+    // not already present in the cache, so lets load it
+    if(gCachedAssets[assetName] == null) {
+      var assetType = getAssetTypeFromExtension(assetName);
+      if(assetType == 0) { // asset is an image
+        var img = new Image();
+        img.onload = function() {
+          onLoadedCallback(img, loadBatch);
+        };
+        img.src = assetName;
+        gCachedAssets[assetName] = img;
+      } else if (assetType == 1) {
+        // asset is different treat it differently
+      }
+
+    } else {
+      // asset is already loaded
+      onLoadedCallback(gCachedAssets[assetList[i]], loadBatch);
+    }
+  }
+}
+
+// if all the images have loaded only then call the callback on them.
+function onLoadedCallback(asset, batch) {
+  batch.count++;
+  if(batch.count == batch.total) {
+    batch.cb(asset);
+  }
+}
+```
