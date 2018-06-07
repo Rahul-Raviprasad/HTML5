@@ -69,3 +69,17 @@ function onLoadedCallback(asset, batch) {
   }
 }
 ```
+
+
+## Doctype
+simplified
+
+## case insensitive
+you can type any case
+<iMg SRc="xyz.png" />
+
+## new and more sematic stuff
+<header>, <nav>, <article>, <section>, <footer>, <aside>
+<section> clarifies <div>
+<article> replaces <div id="content">
+<aside> replaces <div id="sidebar">
