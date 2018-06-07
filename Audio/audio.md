@@ -1,9 +1,13 @@
 # Audio API
 
+
+## web audio playground
+
 explore the web audio playground
 
 https://webaudioplayground.appspot.com/#
 
+## Sound Manager class 
 ```js
 SoundManager = Class.extend({
   clips: {},
