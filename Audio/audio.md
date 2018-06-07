@@ -1,5 +1,20 @@
 # Audio API
+* audio elements attributes are src, autobuffer, loop, autoplay, controls
+* Please note if you don't have controls, the player becomes transparent.
+* by default generally keep autoplay and controls unless you know what you are doing.
 
+## Basic example
+```html
+<!doctype html>
+<html>
+<body>
+  <h1>Audio Example</h1>
+  <audio src="water-dripping.ogg" autoplay controls>
+    <a href="water-dripping.ogg">Download Audio </a>
+  </audio>
+</body>
+</html>
+```
 
 ## web audio playground
 
@@ -7,7 +22,7 @@ explore the web audio playground
 
 https://webaudioplayground.appspot.com/#
 
-## Sound Manager class 
+## Sound Manager class
 ```js
 SoundManager = Class.extend({
   clips: {},
