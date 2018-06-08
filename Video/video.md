@@ -22,5 +22,17 @@
 * H.264
 * WebM
 
+## Captions
+
+a dirty way would be to use jcc's jcap. search on github.
+
+SRT files.
+```html
+<video>
+  <track src="transcript-en.srt" type="text/srt" language="en" role="textaudesc">
+  </track>
+</video>
+```
+
 ## Resources
 Mark pilgrims tutorial in dive into html5 on video
