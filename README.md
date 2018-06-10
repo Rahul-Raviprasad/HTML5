@@ -72,10 +72,11 @@ function onLoadedCallback(asset, batch) {
 
 
 ## Doctype
-simplified
+simplified to
+<!doctype html>
 
 ## case insensitive
-you can type any case
+You can type any case
 <iMg SRc="xyz.png" />
 
 ## new and more sematic stuff
