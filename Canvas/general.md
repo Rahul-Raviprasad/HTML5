@@ -173,3 +173,20 @@ the physics engines like box2d also allows you to pass a callback function for h
 
 ## Physics engine
 check out Box2D
+
+
+## Drawing Linear Gradients on canvas
+Use the createLinearGradient method available on the 2d context to create a gradient.
+
+```js
+// Make a nice blue gradient
+
+var gradient = ctx.createLinearGradient(0, canvas.height, canvas.width, 0);
+gradient.addColorStop(0,'#ceefff');
+gradient.addColorStop(1, '#52bcff');
+
+ctx.fillStyle = gradient;
+ctx.fillRect(0,0,canvas.width, canvas.height)
+
+
+```
