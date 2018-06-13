@@ -194,4 +194,6 @@ ctx.fillRect(0,0,canvas.width, canvas.height)
 ## Isometric projection && Axonometric projection
 In isometric projection, the most commonly used form of axonometric projection in engineering drawing,[4] the direction of viewing is such that the three axes of space appear equally foreshortened, and there is a common angle of 120° between them. As the distortion caused by foreshortening is uniform the proportionality of all sides and lengths are preserved, and the axes share a common scale. This enables measurements to be read or taken directly from the drawing. Another advantage is that 120° angles are more easily constructed using only a compass and straightedge.
 
+explore this link https://www3.ul.ie/~rynnet/keanea/dimetric.htm
+
 https://en.wikipedia.org/wiki/Axonometric_projection
