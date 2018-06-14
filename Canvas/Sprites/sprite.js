@@ -2,16 +2,21 @@
 * @author Rahul Raviprasad <rahul.raviprasad@gmail.com>
 * @class
 */
-var Sprite = function(src, width, height, offsetX, offsetY) {
+var Sprite = function(src, width, height, offsetX, offsetY, frames, duration) {
   this.spritesheet = null;
   this.offsetX = offsetX;
   this.offsetY = offsetY;
-  this.posX = 0;
-  this.posY = 0;
   this.width = width;
   this.height = height;
+  this.frames = 1;
+  this.currentFrame = 0;
+  this.posX = 0;
+  this.posY = 0;
+
+
   this.setSpritesheet(src);
   this.setOffset(offsetX, offsetY);
+  this.setFrames(frames);
 }
 
 // ----------------- prototype functions for Sprite Class ----
@@ -46,4 +51,11 @@ Sprite.prototype.setPosition = function(x, y) {
 Sprite.prototype.setOffset = function(x, y) {
 	this.offsetX = x;
 	this.offsetY = y;
+}
+
+/**
+*/
+Sprite.prototype.setFrames = function(frameCount) {
+  this.currentFrame = 0;
+  this.frames = frameCount;
 }
