@@ -203,3 +203,7 @@ https://www.mapeditor.org/
 * have a world view and and a viewRect, when you want to update the canvas don't update the entire world, but only the visible part of the canvas. i.e viewRect. And re-center the area showing inside the canvas, this way you save on performance as we are not re rendering the entire complecated world of maps.
 * use addEventListener to listen to event on the elements.
 * allow keymapping for user to change the OPTIONS
+
+
+## Getting and putting image data
+use getImageData method
