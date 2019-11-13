@@ -84,3 +84,6 @@ You can type any case
 <section> clarifies <div>
 <article> replaces <div id="content">
 <aside> replaces <div id="sidebar">
+
+
+## drawing memes on canvas
